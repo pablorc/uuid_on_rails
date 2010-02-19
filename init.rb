@@ -1,1 +1,1 @@
-require 'uuid_migrations'
+require 'u_u_i_d_migrations'
