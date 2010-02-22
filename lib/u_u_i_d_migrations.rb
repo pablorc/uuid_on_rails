@@ -12,18 +12,18 @@ module ActiveRecord
 
         puts options.keys.join(', ')
 
-        not_needed_id = options[:id]== false
-        options[:id] = false
+#        not_needed_id = options[:id]== false
+#        options[:id] = false
         create_table_without_uuid name, options do |t|
           #Using the decoration
           ut = UUIDTableDefinition.new t
           #Creates the id column as a string with limit==36
           #And creates the rest
           block.call(ut) if block_given?
-          unless not_needed_id
-            ut.create_primary_uuid_key
-#            t.primary_key(:id)
-          end
+#          unless not_needed_id
+#            ut.create_primary_uuid_key
+##            t.primary_key(:id)
+#          end
 
         end
 
