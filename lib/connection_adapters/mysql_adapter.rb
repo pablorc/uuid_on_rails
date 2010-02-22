@@ -1,6 +1,7 @@
 module ActiveRecord
   module ConnectionAdapters
     class MysqlAdapter < AbstractAdapter
+      #Redefined from MysqlAdapter, with a modified copy from the NATIVE_DATABASE_TYPES constant
       def native_database_types
         {
           #        :primary_key => "int(11) DEFAULT NULL auto_increment PRIMARY KEY".freeze,
