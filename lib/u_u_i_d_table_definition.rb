@@ -5,6 +5,7 @@ class UUIDTableDefinition
   #Receipts a decoration (ActiveRecord::ConnectionAdapters::TableDefinition)
   def initialize decorated
     @decorated = decorated
+#    @decorated.columns << UUIDColumnDefinition.new
   end
 
   #Method for create foreign keys. With the model's name (underscored and singular)
@@ -26,4 +27,10 @@ class UUIDTableDefinition
   def method_missing sym, *options, &b
     @decorated.send sym, *options, &b
   end
+
+  private
+  def create_primary_uuid_key
+    self.string(:id, :limit=> 36, :null=> false)
+  end
 end
+

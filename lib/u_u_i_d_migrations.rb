@@ -9,16 +9,24 @@ module ActiveRecord
 
       #Equals to ActiveRecord::ConnectionAdapters::SchemaStatements#create_table
       def create_table name, options={}, &block
-        needed_id = options[:id]
+
+        puts options.keys.join(', ')
+
+        not_needed_id = options[:id]== false
         options[:id] = false
         create_table_without_uuid name, options do |t|
           #Using the decoration
           ut = UUIDTableDefinition.new t
           #Creates the id column as a string with limit==36
-          ut.string(:id, :limit=> 36, :null=> false) if needed_id
           #And creates the rest
           block.call(ut) if block_given?
+          unless not_needed_id
+            ut.create_primary_uuid_key
+#            t.primary_key(:id)
+          end
+
         end
+
       end
     end
   end
