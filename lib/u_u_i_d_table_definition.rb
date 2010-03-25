@@ -20,7 +20,7 @@ class UUIDTableDefinition
   def relationship other_obj, given_options={}
     options = {:limit=>36 }
     options.merge!(given_options)
-    self.string other_obj.to_s+"_id", options
+    create_uuid_column other_obj.to_s+"_id"
   end
 
   #Send any unknown message to the real object TableDefinition
@@ -30,7 +30,10 @@ class UUIDTableDefinition
 
   private
   def create_primary_uuid_key
-    self.string(:id, :limit=> 36, :null=> false)
+    create_uuid_column :id
+  end
+
+  def create_uuid_column name
+   self.column name, 'varbinary(16)'
   end
 end
-
