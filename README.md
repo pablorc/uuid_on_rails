@@ -1,4 +1,8 @@
-# UUID ON RAILS
+# uuid_on_rails
+
+☢☢ Not maintained. This plugin only works with Rails at version v2.3.x. ☢☢
+
+And after a lot of time working with this approach in a project, I can afirm that it is not _that_ handy. Think twice before replacing your fancy numeric IDs.
 
 ## Introduction
 
